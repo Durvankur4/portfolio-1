@@ -2,25 +2,25 @@
 window.PORTFOLIO_CONTENT = {
   "photos": [
     {
-      "src": "assets/photos/0.jpg",
+      "src": "assets/optimized/photos/0.jpg.webp",
       "alt": "Durvankur"
     },
     {
-      "src": "assets/photos/1.jpeg",
+      "src": "assets/optimized/photos/1.jpeg.webp",
       "alt": "Durvankur"
     },
     {
-      "src": "assets/photos/2.jpeg",
+      "src": "assets/optimized/photos/2.jpeg.webp",
       "alt": "Durvankur"
     },
     {
-      "src": "assets/photos/3.jpeg",
+      "src": "assets/optimized/photos/3.jpeg.webp",
       "alt": "Durvankur"
     }
   ],
   "projects": [
     {
-      "image": "assets/projects/project-1.png",
+      "image": "assets/optimized/projects/project-1.png.webp",
       "title": "Sentiment analyzer",
       "description": "Real-time sentiment analysis of Twitter data using NLP and BERT.",
       "tags": [
@@ -32,7 +32,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-2.png",
+      "image": "assets/optimized/projects/project-2.png.webp",
       "title": "Stock price predictor",
       "description": "LSTM-based neural network with interactive charts and a backtesting engine.",
       "tags": [
@@ -44,7 +44,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-3.png",
+      "image": "assets/optimized/projects/project-3.png.webp",
       "title": "Churn prediction",
       "description": "End-to-end XGBoost pipeline with feature engineering and model explanations.",
       "tags": [
@@ -56,7 +56,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-4.png",
+      "image": "assets/optimized/projects/project-4.png.webp",
       "title": "Medical image classifier",
       "description": "A transfer-learning classifier for chest X-rays using ResNet50.",
       "tags": [
@@ -68,7 +68,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-5.png",
+      "image": "assets/optimized/projects/project-5.png.webp",
       "title": "Movie recommender",
       "description": "A hybrid recommendation system combining collaborative and content-based methods.",
       "tags": [

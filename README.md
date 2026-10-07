@@ -8,7 +8,7 @@ Drop photos into `assets/photos/`, then run:
 npm run build
 ```
 
-Every supported image in that folder becomes part of the hero photo stack. Supported formats are JPG, PNG, WebP, GIF, and AVIF.
+Every supported image in that folder becomes part of the hero photo stack. Supported formats are JPG, PNG, WebP, GIF, and AVIF. Each build automatically creates a smaller WebP copy in `assets/optimized/photos/`; the published site uses that compressed copy, while your original upload stays in place.
 
 For a project, add its image to `assets/projects/` and place a JSON file beside it with the same name. For example, `customer-churn.png` uses `customer-churn.json`:
 
@@ -21,7 +21,7 @@ For a project, add its image to `assets/projects/` and place a JSON file beside 
 }
 ```
 
-Run `npm run build` after adding photos or projects. The command regenerates `assets/content.js`, which the site uses for both stacks. On Netlify, this runs automatically for every deploy.
+Run `npm run build` after adding photos or projects. The command automatically compresses images, removes obsolete generated copies, and regenerates `assets/content.js`. On Netlify, this runs automatically for every deploy.
 
 While editing locally, run this once in a second terminal to rebuild the index every time you add, replace, or remove a supported photo or project image:
 
