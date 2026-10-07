@@ -1,0 +1,43 @@
+/* Explicit depth classes keep the stack staggered regardless of photo count. */
+.photo-card img {
+  filter: none;
+}
+
+.photo-stack .stack-card {
+  transition: transform .65s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+}
+
+.photo-stack .stack-depth-0 {
+  opacity: .76;
+  transform: translate(24px, 26px) rotate(7deg) scale(.93);
+  z-index: 1;
+}
+
+.photo-stack .stack-depth-1 {
+  opacity: .9;
+  transform: translate(-18px, 13px) rotate(-5deg) scale(.97);
+  z-index: 2;
+}
+
+.photo-stack .stack-depth-2 {
+  transform: translate(0) rotate(0) scale(1);
+  z-index: 3;
+}
+
+.photo-stack .stack-card.is-entering {
+  opacity: 0;
+  transform: translateX(32px) rotate(4deg) scale(.96);
+}
+
+.photo-stack .stack-card.is-top {
+  touch-action: pan-y;
+}
+
+@media (max-width: 760px) {
+  .photo-stack .stack-depth-0 { transform: translate(18px, 22px) rotate(6deg) scale(.94); }
+  .photo-stack .stack-depth-1 { transform: translate(-14px, 11px) rotate(-4deg) scale(.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-stack .stack-card { transition: none; }
+}

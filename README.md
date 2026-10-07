@@ -1,60 +1,48 @@
-# Durvankur — Data Science Portfolio
+# Durvankur portfolio
 
-A stunning, dark-themed portfolio website inspired by [mockit.design](https://www.mockit.design/).
+## Updating the card stacks
 
-## Features
+Drop photos into `assets/photos/`, then run:
 
-- 🌑 Dark theme with grain texture overlay
-- 🎯 Scroll-triggered reveal animations
-- 📊 Horizontal-scrolling project showcase (marquee)
-- 💎 Glassmorphism cards and navigation
-- ✨ Animated counters and parallax effects
-- 📱 Fully responsive (mobile → desktop)
-- ⚡ Pure HTML/CSS/JS — no frameworks needed
+```bash
+npm run build
+```
 
-## How to Deploy
+Every supported image in that folder becomes part of the hero photo stack. Supported formats are JPG, PNG, WebP, GIF, and AVIF.
 
-### GitHub Pages
-1. Push this repo to GitHub
-2. Go to **Settings → Pages**
-3. Set source to `main` branch, root folder
-4. Your site will be live at `https://yourusername.github.io/portfolio-1/`
+For a project, add its image to `assets/projects/` and place a JSON file beside it with the same name. For example, `customer-churn.png` uses `customer-churn.json`:
 
-### Netlify
-1. Push this repo to GitHub
-2. Go to [netlify.com](https://netlify.com) → **Add new site → Import from Git**
-3. Select your repo
-4. Leave build settings empty (it's static HTML)
-5. Click **Deploy**
+```json
+{
+  "title": "Customer churn",
+  "description": "Predicts churn from account activity and support signals.",
+  "tags": ["Python", "XGBoost"],
+  "link": "https://github.com/your-username/customer-churn"
+}
+```
 
-## Customization
+Run `npm run build` after adding photos or projects. The command regenerates `assets/content.js`, which the site uses for both stacks. On Netlify, this runs automatically for every deploy.
 
-### Replace your photo
-- Add your B/W photo as `assets/hero-photo.png`
+While editing locally, run this once in a second terminal to rebuild the index every time you add, replace, or remove a supported photo or project image:
 
-### Replace project images
-- Add screenshots as `assets/project-1.png` through `assets/project-5.png`
+```bash
+npm run watch
+```
 
-### Update content
-- Edit `index.html` to change:
-  - Your name, bio, and taglines
-  - Project titles, descriptions, and links
-  - Experience/education entries
-  - Social media links
-  - Contact email
+Refresh the browser after the watcher reports an update. The generated index is served with revalidation enabled on Netlify, so a refreshed published site always receives the latest deployed content.
 
-### Add your resume
-- Place your resume PDF as `assets/Durvankur_Resume.pdf`
+## Visitor counter
 
-## Tech Stack
+The displayed counter is a Netlify serverless function backed by Netlify Blobs. Deploy through Netlify for it to increment globally for each page visit. It has a clear offline/local fallback and does not pretend a browser-only counter is shared between visitors.
 
-| Technology | Purpose |
-|-----------|---------|
-| HTML5 | Semantic structure |
-| CSS3 | Design system, animations, glassmorphism |
-| Vanilla JS | Intersection Observer, parallax, counters |
-| Google Fonts | Bebas Neue + Inter typography |
+## Deploy to Netlify
 
-## License
+1. Push the repository to GitHub.
+2. In Netlify, choose **Add new site** and import the repository.
+3. Netlify reads `netlify.toml`, installs the dependency, runs the build, and serves the site plus counter function.
 
-MIT — Feel free to use and modify.
+GitHub Pages can host the site, but cannot run the shared visitor-counter function.
+
+## Social links
+
+Edit assets/socials.js to paste your email and profile URLs. Empty url values are automatically hidden from the contact section.

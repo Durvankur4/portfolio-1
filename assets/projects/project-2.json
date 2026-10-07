@@ -1,0 +1,6 @@
+{
+  "title": "Stock price predictor",
+  "description": "LSTM-based neural network with interactive charts and a backtesting engine.",
+  "tags": ["TensorFlow", "LSTM", "Pandas", "Plotly"],
+  "link": "#"
+}

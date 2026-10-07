@@ -1,0 +1,6 @@
+{
+  "title": "Sentiment analyzer",
+  "description": "Real-time sentiment analysis of Twitter data using NLP and BERT.",
+  "tags": ["Python", "BERT", "Streamlit", "NLP"],
+  "link": "#"
+}

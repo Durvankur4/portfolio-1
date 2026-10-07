@@ -1,0 +1,6 @@
+{
+  "title": "Churn prediction",
+  "description": "End-to-end XGBoost pipeline with feature engineering and model explanations.",
+  "tags": ["XGBoost", "Flask", "SHAP", "Docker"],
+  "link": "#"
+}

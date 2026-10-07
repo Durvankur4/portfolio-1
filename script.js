@@ -1,234 +1,113 @@
-/* ═══════════════════════════════════════════
-   DURVANKUR — PORTFOLIO INTERACTIONS
-   Scroll reveals, parallax, counters, nav
-   ═══════════════════════════════════════════ */
-
 document.addEventListener('DOMContentLoaded', () => {
+  const content = window.PORTFOLIO_CONTENT || { photos: [], projects: [] };
 
-  /* ── 1. Scroll Progress Bar ── */
-  const progressBar = document.getElementById('scroll-progress');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = pct + '%';
-  }
-
-  /* ── 2. Navbar hide/show on scroll ── */
-  const navbar = document.getElementById('navbar');
-  let lastScroll = 0;
-  function handleNavbar() {
-    const current = window.scrollY;
-    if (current > 80 && current > lastScroll) {
-      navbar.classList.add('hidden-nav');
-    } else {
-      navbar.classList.remove('hidden-nav');
-    }
-    lastScroll = current;
-  }
-
-  /* ── 3. Active nav link highlighting ── */
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
-  function highlightNav() {
-    const scrollY = window.scrollY + 120;
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-      if (scrollY >= top && scrollY < top + height) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
+  const createPhotoStack = () => {
+    const stack = document.querySelector('#photo-stack');
+    const position = document.querySelector('#photo-position');
+    const items = content.photos || [];
+    let currentIndex = 0;
+    let startX = 0;
+    let didSwipe = false;
+    const render = () => {
+      stack.innerHTML = '';
+      if (!items.length) {
+        stack.innerHTML = '<div class="stack-card is-top empty-card">Add photos to assets/photos</div>';
+        return;
+      }
+      // Always render three cards. When fewer than three photos are supplied,
+      // repeat the available photo so the stack keeps its intended shape.
+      const visibleIndexes = Array.from({ length: 3 }, (_, depth) =>
+        (currentIndex + depth) % items.length
+      );
+      [...visibleIndexes].reverse().forEach((itemIndex, depth) => {
+        const photo = items[itemIndex];
+        const card = document.createElement('article');
+        card.className = `stack-card photo-card stack-depth-${depth} is-entering`;
+        if (depth === visibleIndexes.length - 1) card.classList.add('is-top');
+        card.innerHTML = `<img src="${photo.src}" alt="${photo.alt || 'Durvankur'}">`;
+        card.addEventListener('click', () => {
+          if (!didSwipe && depth === visibleIndexes.length - 1) shuffle(1);
         });
+        stack.append(card);
+        requestAnimationFrame(() => card.classList.remove('is-entering'));
+      });
+      position.textContent = `${currentIndex + 1} / ${items.length}`;
+    };
+    const shuffle = direction => {
+      if (items.length < 2) return;
+      currentIndex = (currentIndex + direction + items.length) % items.length;
+      render();
+    };
+    document.querySelector('#photo-previous').addEventListener('click', () => shuffle(-1));
+    document.querySelector('#photo-next').addEventListener('click', () => shuffle(1));
+    stack.addEventListener('pointerdown', event => {
+      didSwipe = false;
+      startX = event.clientX;
+      stack.setPointerCapture?.(event.pointerId);
+    });
+    stack.addEventListener('pointerup', event => {
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) > 45) {
+        didSwipe = true;
+        shuffle(delta < 0 ? 1 : -1);
       }
     });
-  }
+    stack.addEventListener('pointercancel', () => { didSwipe = false; });
+    stack.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') shuffle(1);
+      if (event.key === 'ArrowLeft') shuffle(-1);
+    });
+    render();
+  };
 
-  /* ── Combined scroll handler ── */
-  let ticking = false;
+  const createProjectMarquee = () => {
+    const track = document.querySelector('#project-track');
+    const createCard = project => {
+      const card = document.createElement('article');
+      card.className = 'marquee-project-card';
+      const tags = (project.tags || []).map(tag => `<span>${tag}</span>`).join('');
+      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${project.link || '#'}" target="_blank" rel="noreferrer">View project ↗</a></div>`;
+      return card;
+    };
+    const cards = (content.projects || []).map(createCard);
+    if (!cards.length) {
+      track.innerHTML = '<p class="empty-card">Add projects to assets/projects</p>';
+      return;
+    }
+    cards.forEach(card => track.append(card));
+    cards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.append(clone);
+    });
+  };
+
+  const createSocialLinks = () => {
+    const links = document.querySelector('#contact-links');
+    const socials = (window.PORTFOLIO_SOCIALS || []).filter(social => social.url);
+    links.innerHTML = socials.map(social => {
+      const external = !social.url.startsWith('mailto:');
+      return `<a href="${social.url}" class="contact-link"${external ? ' target="_blank" rel="noreferrer"' : ''}>${social.label} <span>↗</span></a>`;
+    }).join('');
+  };
+
+  createPhotoStack();
+  createProjectMarquee();
+  createSocialLinks();
+
+  const navToggle = document.querySelector('#nav-toggle');
+  const navLinks = document.querySelector('#nav-links');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('open')));
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        updateProgress();
-        handleNavbar();
-        highlightNav();
-        ticking = false;
-      });
-      ticking = true;
-    }
+    const height = document.documentElement.scrollHeight - innerHeight;
+    document.querySelector('#scroll-progress').style.width = `${height ? scrollY / height * 100 : 0}%`;
   }, { passive: true });
-
-  /* ── 4. Mobile nav toggle ── */
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinksEl = document.getElementById('nav-links');
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      navLinksEl.classList.toggle('open');
-    });
-    // Close menu when clicking a link
-    navLinksEl.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinksEl.classList.remove('open');
-      });
-    });
-  }
-
-  /* ── 5. Scroll Reveal (Intersection Observer) ── */
-  const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -40px 0px'
-  });
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  /* ── 6. Animated Counters ── */
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.getAttribute('data-target'), 10);
-        animateCounter(el, target);
-        counterObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(c => counterObserver.observe(c));
-
-  function animateCounter(el, target) {
-    const duration = 1500;
-    const startTime = performance.now();
-    function step(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(eased * target);
-      el.textContent = current + (target >= 100 ? '+' : '+');
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  /* ── 7. Hero parallax on mouse move ── */
-  const hero = document.querySelector('.hero');
-  const heroPhoto = document.querySelector('.hero-photo-wrapper');
-  const heroGlow = document.querySelector('.hero-glow');
-  if (hero && heroPhoto) {
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroPhoto.style.transform = `translate(${x * 15}px, ${y * 15}px)`;
-      if (heroGlow) {
-        heroGlow.style.transform = `translateX(calc(-50% + ${x * 30}px))`;
-      }
-    });
-  }
-
-  /* ── 8. Smooth scroll for anchor links ── */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  /* ── 9. Hero photo fallback (placeholder SVG) ── */
-  const heroImg = document.getElementById('hero-photo');
-  if (heroImg) {
-    heroImg.addEventListener('error', () => {
-      // Generate inline SVG placeholder
-      const wrapper = heroImg.parentElement;
-      wrapper.innerHTML = `
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <rect width="200" height="200" fill="#1a1a1a"/>
-          <circle cx="100" cy="80" r="35" fill="#333"/>
-          <ellipse cx="100" cy="160" rx="50" ry="35" fill="#333"/>
-          <text x="100" y="195" text-anchor="middle" fill="#555" font-size="10" font-family="Inter,sans-serif">Add your photo</text>
-        </svg>`;
-    });
-  }
-
-  /* ── 10. Project image fallbacks ── */
-  document.querySelectorAll('.project-card-img img').forEach((img, i) => {
-    img.addEventListener('error', () => {
-      const colors = ['#1a1025', '#0f1a2e', '#1a0f1e', '#0e1a1a', '#1e1a0f'];
-      const accents = ['#7c3aed', '#3b82f6', '#ec4899', '#06b6d4', '#f59e0b'];
-      const color = colors[i % colors.length];
-      const accent = accents[i % accents.length];
-      img.parentElement.innerHTML = `
-        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <rect width="380" height="200" fill="${color}"/>
-          <circle cx="190" cy="100" r="40" fill="${accent}" opacity="0.2"/>
-          <circle cx="190" cy="100" r="20" fill="${accent}" opacity="0.4"/>
-          <rect x="60" y="150" width="260" height="4" rx="2" fill="${accent}" opacity="0.15"/>
-          <rect x="100" y="162" width="180" height="4" rx="2" fill="${accent}" opacity="0.1"/>
-          <text x="190" y="105" text-anchor="middle" fill="${accent}" font-size="14" font-family="Bebas Neue,sans-serif" letter-spacing="2" opacity="0.6">PROJECT ${i % 5 + 1}</text>
-        </svg>`;
-    });
-  });
-
-  /* ── 11. Custom Cursor ── */
-  const cursorDot = document.querySelector('.custom-cursor-dot');
-  const cursorRing = document.querySelector('.custom-cursor-ring');
-  
-  if (cursorDot && cursorRing) {
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-    let dotX = mouseX;
-    let dotY = mouseY;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    function renderCursor() {
-      // Smooth interpolation for the ring
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      
-      // Fast interpolation for the dot
-      dotX += (mouseX - dotX) * 0.5;
-      dotY += (mouseY - dotY) * 0.5;
-
-      cursorDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
-      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-      
-      requestAnimationFrame(renderCursor);
-    }
-    requestAnimationFrame(renderCursor);
-    
-    // Add hover states for links and buttons
-    const interactables = document.querySelectorAll('a, button');
-    interactables.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorDot.classList.add('hovered');
-        cursorRing.classList.add('hovered');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorDot.classList.remove('hovered');
-        cursorRing.classList.remove('hovered');
-      });
-    });
-  }
-
+  fetch('/.netlify/functions/visit-counter', { method: 'POST' })
+    .then(response => response.ok ? response.json() : Promise.reject())
+    .then(({ count }) => { document.querySelector('#visitor-count').textContent = Number(count).toLocaleString(); })
+    .catch(() => { document.querySelector('#visitor-count').textContent = 'Available on live site'; });
 });
