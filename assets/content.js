@@ -20,7 +20,7 @@ window.PORTFOLIO_CONTENT = {
   ],
   "projects": [
     {
-      "image": "assets/projects/project-1.jpg",
+      "image": "assets/projects/project-1.png",
       "title": "Sentiment analyzer",
       "description": "Real-time sentiment analysis of Twitter data using NLP and BERT.",
       "tags": [
@@ -32,7 +32,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-2.jpg",
+      "image": "assets/projects/project-2.png",
       "title": "Stock price predictor",
       "description": "LSTM-based neural network with interactive charts and a backtesting engine.",
       "tags": [
@@ -44,7 +44,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-3.jpg",
+      "image": "assets/projects/project-3.png",
       "title": "Churn prediction",
       "description": "End-to-end XGBoost pipeline with feature engineering and model explanations.",
       "tags": [
@@ -56,7 +56,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-4.jpg",
+      "image": "assets/projects/project-4.png",
       "title": "Medical image classifier",
       "description": "A transfer-learning classifier for chest X-rays using ResNet50.",
       "tags": [
@@ -68,7 +68,7 @@ window.PORTFOLIO_CONTENT = {
       "link": "#"
     },
     {
-      "image": "assets/projects/project-5.jpg",
+      "image": "assets/projects/project-5.png",
       "title": "Movie recommender",
       "description": "A hybrid recommendation system combining collaborative and content-based methods.",
       "tags": [
