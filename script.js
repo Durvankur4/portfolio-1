@@ -24,9 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('article');
         card.className = `stack-card photo-card stack-depth-${depth} is-entering`;
         if (depth === visibleIndexes.length - 1) card.classList.add('is-top');
-        card.innerHTML = `<img src="${photo.src}" alt="${photo.alt || 'Durvankur'}">`;
+        const isTopCard = depth === visibleIndexes.length - 1;
+        card.innerHTML = `<img src="${photo.src}" alt="${photo.alt || 'Durvankur'}" decoding="async" loading="${isTopCard ? 'eager' : 'lazy'}"${isTopCard ? ' fetchpriority="high"' : ''}>`;
         card.addEventListener('click', () => {
-          if (!didSwipe && depth === visibleIndexes.length - 1) shuffle(1);
+          if (!didSwipe && isTopCard) shuffle(1);
         });
         stack.append(card);
         requestAnimationFrame(() => card.classList.remove('is-entering'));
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'marquee-project-card';
       const tags = (project.tags || []).map(tag => `<span>${tag}</span>`).join('');
-      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${project.link || '#'}" target="_blank" rel="noreferrer">View project ↗</a></div>`;
+      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${project.link || '#'}" target="_blank" rel="noreferrer">View project ↗</a></div>`;
       return card;
     };
     const cards = (content.projects || []).map(createCard);

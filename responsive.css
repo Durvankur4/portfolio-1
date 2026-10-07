@@ -1,0 +1,29 @@
+@media (max-width: 480px) {
+  .navbar-inner,
+  .container,
+  .editorial-container { padding-left: 16px; padding-right: 16px; }
+
+  .hero { min-height: auto; padding-bottom: 52px; padding-top: 96px; }
+  .editorial-container { gap: 42px; }
+  .editorial-title-main { font-size: clamp(2.8rem, 15vw, 4.2rem); }
+  .editorial-title-sub { font-size: clamp(3rem, 16vw, 4.5rem); }
+  .editorial-desc { margin-top: 28px; }
+  .editorial-buttons { gap: 9px; }
+  .btn-primary,
+  .btn-outline { flex: 1 1 132px; text-align: center; }
+
+  .photo-stack-shell { width: calc(100% - 28px); }
+  .photo-stack { height: min(116vw, 400px); }
+  .photo-arrow { height: 42px; top: calc(50% - 21px); width: 42px; }
+  .photo-arrow-previous { left: -14px; }
+  .photo-arrow-next { right: -14px; }
+
+  .marquee-project-card { flex-basis: min(84vw, 330px); }
+  .section-header { margin-bottom: 34px; }
+  .contact-link { flex-basis: 100%; }
+}
+
+@media (max-width: 340px) {
+  .editorial-buttons { flex-direction: column; }
+  .photo-stack-shell { width: calc(100% - 22px); }
+}
