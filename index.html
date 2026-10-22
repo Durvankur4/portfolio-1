@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="photo-stack.css">
   <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
@@ -40,14 +39,7 @@
             <a href="assets/Durvankur_Resume.pdf" target="_blank" class="btn-outline">Resume</a>
           </div>
         </div>
-        <div class="photo-stack-wrap">
-          <div class="photo-stack-shell">
-            <div class="photo-stack" id="photo-stack" role="region" aria-label="Photo gallery. Swipe or use the buttons to view another photo." tabindex="0"></div>
-            <button type="button" class="stack-button photo-arrow photo-arrow-previous" id="photo-previous" aria-label="Previous photo">←</button>
-            <button type="button" class="stack-button photo-arrow photo-arrow-next" id="photo-next" aria-label="Next photo">→</button>
-          </div>
-          <p id="photo-position" class="stack-position" aria-live="polite">1 / 1</p>
-        </div>
+        <div class="hero-photo" id="hero-photo"></div>
       </div>
     </section>
     <section class="projects-section" id="projects" aria-label="Featured projects">
@@ -68,10 +60,10 @@
           <p class="section-label">Journey</p>
           <h2 class="section-title">Experience &amp; education</h2>
         </div>
-        <div class="timeline">
-          <article class="timeline-item"><p class="timeline-date">2025 — Present</p><h3>Data science intern</h3><h4>Company Name · Remote</h4><p>Building predictive models and data pipelines, from customer segmentation to production deployment.</p></article>
+        <div class="timeline" tabindex="0" role="region" aria-label="Career timeline, scroll horizontally to explore">
           <article class="timeline-item"><p class="timeline-date">2023 — Present</p><h3>B.Tech / B.Sc in data science</h3><h4>University Name</h4><p>Focused coursework in machine learning, statistics, data structures, linear algebra, and probability.</p></article>
           <article class="timeline-item"><p class="timeline-date">2024</p><h3>Kaggle competitions</h3><h4>Kaggle Expert</h4><p>Participated in prediction challenges and built practical modelling experience through iterative experiments.</p></article>
+          <article class="timeline-item"><p class="timeline-date">2025 — Present</p><h3>Data science intern</h3><h4>Company Name · Remote</h4><p>Building predictive models and data pipelines, from customer segmentation to production deployment.</p></article>
         </div>
       </div>
     </section>

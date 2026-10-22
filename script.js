@@ -1,64 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   const content = window.PORTFOLIO_CONTENT || { photos: [], projects: [] };
 
-  const createPhotoStack = () => {
-    const stack = document.querySelector('#photo-stack');
-    const position = document.querySelector('#photo-position');
-    const items = content.photos || [];
-    let currentIndex = 0;
-    let startX = 0;
-    let didSwipe = false;
-    const render = () => {
-      stack.innerHTML = '';
-      if (!items.length) {
-        stack.innerHTML = '<div class="stack-card is-top empty-card">Add photos to assets/photos</div>';
-        return;
-      }
-      // Always render three cards. When fewer than three photos are supplied,
-      // repeat the available photo so the stack keeps its intended shape.
-      const visibleIndexes = Array.from({ length: 3 }, (_, depth) =>
-        (currentIndex + depth) % items.length
-      );
-      [...visibleIndexes].reverse().forEach((itemIndex, depth) => {
-        const photo = items[itemIndex];
-        const card = document.createElement('article');
-        card.className = `stack-card photo-card stack-depth-${depth} is-entering`;
-        if (depth === visibleIndexes.length - 1) card.classList.add('is-top');
-        const isTopCard = depth === visibleIndexes.length - 1;
-        card.innerHTML = `<img src="${photo.src}" alt="${photo.alt || 'Durvankur'}" decoding="async" loading="${isTopCard ? 'eager' : 'lazy'}"${isTopCard ? ' fetchpriority="high"' : ''}>`;
-        card.addEventListener('click', () => {
-          if (!didSwipe && isTopCard) shuffle(1);
-        });
-        stack.append(card);
-        requestAnimationFrame(() => card.classList.remove('is-entering'));
-      });
-      position.textContent = `${currentIndex + 1} / ${items.length}`;
-    };
-    const shuffle = direction => {
-      if (items.length < 2) return;
-      currentIndex = (currentIndex + direction + items.length) % items.length;
-      render();
-    };
-    document.querySelector('#photo-previous').addEventListener('click', () => shuffle(-1));
-    document.querySelector('#photo-next').addEventListener('click', () => shuffle(1));
-    stack.addEventListener('pointerdown', event => {
-      didSwipe = false;
-      startX = event.clientX;
-      stack.setPointerCapture?.(event.pointerId);
-    });
-    stack.addEventListener('pointerup', event => {
-      const delta = event.clientX - startX;
-      if (Math.abs(delta) > 45) {
-        didSwipe = true;
-        shuffle(delta < 0 ? 1 : -1);
-      }
-    });
-    stack.addEventListener('pointercancel', () => { didSwipe = false; });
-    stack.addEventListener('keydown', event => {
-      if (event.key === 'ArrowRight') shuffle(1);
-      if (event.key === 'ArrowLeft') shuffle(-1);
-    });
-    render();
+  const createHeroPhoto = () => {
+    const container = document.querySelector('#hero-photo');
+    const photo = content.photos?.[0];
+    if (!photo) {
+      container.textContent = 'Add a photo to assets/photos';
+      return;
+    }
+    const image = document.createElement('img');
+    image.src = photo.src;
+    image.alt = photo.alt || 'Durvankur';
+    image.decoding = 'async';
+    image.fetchPriority = 'high';
+    container.append(image);
   };
 
   const createProjectMarquee = () => {
@@ -92,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   };
 
-  createPhotoStack();
+  createHeroPhoto();
   createProjectMarquee();
   createSocialLinks();
 
