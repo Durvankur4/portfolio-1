@@ -1,6 +1,13 @@
+
 {
-  "title": "Sentiment analyzer",
-  "description": "Real-time sentiment analysis of Twitter data using NLP and BERT.",
-  "tags": ["Python", "BERT", "Streamlit", "NLP"],
-  "link": "#"
+  "title": "VeraPatch — Automated Security Findings Management",
+  "description": "A DevSecOps prototype that integrates automated security scanning into CI/CD workflows. Uses GitHub Actions and Semgrep to detect vulnerabilities, ingest scan results through a token-authenticated REST API, and organize findings for review. Separates externally accessible scan ingestion from internal read endpoints to reduce security exposure.",
+  "tags": [
+    "Semgrep",
+    "GitHub Actions",
+    "REST API",
+    "DevSecOps",
+    "Application Security"
+  ],
+  "link": "https://github.com/Durvankur4/Verapatch"
 }
