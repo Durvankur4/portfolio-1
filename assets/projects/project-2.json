@@ -1,6 +1,13 @@
+
 {
-  "title": "Stock price predictor",
-  "description": "LSTM-based neural network with interactive charts and a backtesting engine.",
-  "tags": ["TensorFlow", "LSTM", "Pandas", "Plotly"],
-  "link": "#"
+  "title": "VeraPatch — Automated Security Findings Management",
+  "description": "A DevSecOps prototype that integrates automated security scanning into CI/CD workflows. Uses GitHub Actions and Semgrep to detect vulnerabilities, ingest scan results through a token-authenticated REST API, and organize findings for review. Separates externally accessible scan ingestion from internal read endpoints to reduce security exposure.",
+  "tags": [
+    "Semgrep",
+    "GitHub Actions",
+    "REST API",
+    "DevSecOps",
+    "Application Security"
+  ],
+  "link": "https://github.com/Durvankur4/Verapatch"
 }
