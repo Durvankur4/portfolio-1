@@ -1,6 +1,6 @@
 {
-  "title": "Sentiment analyzer",
-  "description": "Real-time sentiment analysis of Twitter data using NLP and BERT.",
-  "tags": ["Python", "BERT", "Streamlit", "NLP"],
-  "link": "#"
+  "title": "Verity evidence extraction",
+  "description": "An AI-assisted tool that extracts reviewable sustainability data from electricity bills and fuel receipts, with human verification and JSON or CSV export.",
+  "tags": ["TypeScript", "Next.js", "Mistral", "AI Vision"],
+  "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
 }

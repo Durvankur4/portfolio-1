@@ -21,15 +21,15 @@ window.PORTFOLIO_CONTENT = {
   "projects": [
     {
       "image": "assets/optimized/projects/project-1.png.webp",
-      "title": "Sentiment analyzer",
-      "description": "Real-time sentiment analysis of Twitter data using NLP and BERT.",
+      "title": "Verity evidence extraction",
+      "description": "An AI-assisted tool that extracts reviewable sustainability data from electricity bills and fuel receipts, with human verification and JSON or CSV export.",
       "tags": [
-        "Python",
-        "BERT",
-        "Streamlit",
-        "NLP"
+        "TypeScript",
+        "Next.js",
+        "Mistral",
+        "AI Vision"
       ],
-      "link": "#"
+      "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
     },
     {
       "image": "assets/optimized/projects/project-2.png.webp",

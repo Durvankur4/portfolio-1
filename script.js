@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'marquee-project-card';
       const tags = (project.tags || []).map(tag => `<span>${tag}</span>`).join('');
-      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${project.link || '#'}" target="_blank" rel="noreferrer">View project ↗</a></div>`;
+      const hasProjectLink = project.link && project.link !== '#';
+      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${hasProjectLink ? project.link : project.image}" target="_blank" rel="noreferrer">${hasProjectLink ? 'View project' : 'View project image'} ↗</a></div>`;
       return card;
     };
     const cards = (content.projects || []).map(createCard);
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.forEach(card => {
       const clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a').forEach(link => { link.tabIndex = -1; });
       track.append(clone);
     });
   };
