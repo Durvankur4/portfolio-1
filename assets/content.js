@@ -21,15 +21,6 @@ window.PORTFOLIO_CONTENT = {
   "projects": [
     {
       "image": "assets/optimized/projects/project-1.png.webp",
-      "title": "Verity evidence extraction",
-      "description": "An AI-assisted tool that extracts reviewable sustainability data from electricity bills and fuel receipts, with human verification and JSON or CSV export.",
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Mistral",
-        "AI Vision"
-      ],
-      "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
       "title": "VeraPatch — Automated Security Findings Management",
       "description": "A DevSecOps prototype that integrates automated security scanning into CI/CD workflows. Uses GitHub Actions and Semgrep to detect vulnerabilities, ingest scan results through a token-authenticated REST API, and organize findings for review. Separates externally accessible scan ingestion from internal read endpoints to reduce security exposure.",
       "tags": [

@@ -1,14 +1,7 @@
 
 {
   "title": "Verity — AI-Powered ESG Evidence Extraction",
-  "description": "Built an AI-powered document extraction MVP that converts electricity bills and fuel receipts into structured ESG evidence. Uses Mistral Vision to classify documents, extract key fields, and surface uncertain values for human review. Supports document previews, field-level verification, and JSON/CSV exports.",
-  "tags": [
-    "Next.js",
-    "TypeScript",
-    "React",
-    "Mistral AI",
-    "Document AI",
-    "ESG"
-  ],
+  "description": "Turns electricity bills and fuel receipts into structured ESG data with AI extraction, human review, and JSON/CSV exports.",
+  "tags": ["Next.js", "TypeScript", "React", "Mistral AI", "Document AI", "ESG"],
   "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
 }
