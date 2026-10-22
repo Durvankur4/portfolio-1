@@ -30,18 +30,30 @@ window.PORTFOLIO_CONTENT = {
         "AI Vision"
       ],
       "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
+      "title": "VeraPatch — Automated Security Findings Management",
+      "description": "A DevSecOps prototype that integrates automated security scanning into CI/CD workflows. Uses GitHub Actions and Semgrep to detect vulnerabilities, ingest scan results through a token-authenticated REST API, and organize findings for review. Separates externally accessible scan ingestion from internal read endpoints to reduce security exposure.",
+      "tags": [
+        "Semgrep",
+        "GitHub Actions",
+        "REST API",
+        "DevSecOps",
+        "Application Security"
+      ],
+      "link": "https://github.com/Durvankur4/Verapatch"
     },
     {
       "image": "assets/optimized/projects/project-2.png.webp",
-      "title": "Stock price predictor",
-      "description": "LSTM-based neural network with interactive charts and a backtesting engine.",
+      "title": "Verity — AI-Powered ESG Evidence Extraction",
+      "description": "Built an AI-powered document extraction MVP that converts electricity bills and fuel receipts into structured ESG evidence. Uses Mistral Vision to classify documents, extract key fields, and surface uncertain values for human review. Supports document previews, field-level verification, and JSON/CSV exports.",
       "tags": [
-        "TensorFlow",
-        "LSTM",
-        "Pandas",
-        "Plotly"
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Mistral AI",
+        "Document AI",
+        "ESG"
       ],
-      "link": "#"
+      "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
     },
     {
       "image": "assets/optimized/projects/project-3.png.webp",
