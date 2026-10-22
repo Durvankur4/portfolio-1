@@ -7,10 +7,12 @@
 .timeline-item::before { border: 3px solid var(--bg); border-radius: 50%; height: 15px; left: 0; top: -9px; width: 15px; }
 .timeline-item:last-child::before { box-shadow: 0 0 0 2px var(--accent); }
 
-.marquee-project-card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; width: 420px; flex-basis: 420px; }
-.marquee-project-image { align-self: start; }
-.marquee-project-image img { height: auto; object-fit: contain; width: 100%; }
-.marquee-project-content { gap: 16px; }
+.marquee-project-card { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; width: 360px; flex-basis: 360px; padding: 16px; border-radius: 8px; }
+.marquee-project-image { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; }
+.marquee-project-image img { height: 100%; object-fit: cover; width: 100%; }
+.marquee-project-content { gap: 16px; padding: 20px 0 0; }
+.project-tags { order: -1; }
+.project-tags span { border-radius: 20px; background: var(--surface-2); padding: 4px 9px; }
 .marquee-project-content p,
 .project-tags { margin-top: 0; }
 .project-link { padding-top: 8px; }

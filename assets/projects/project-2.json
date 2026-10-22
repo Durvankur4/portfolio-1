@@ -1,6 +1,6 @@
 {
-  "title": "Stock price predictor",
-  "description": "LSTM-based neural network with interactive charts and a backtesting engine.",
-  "tags": ["TensorFlow", "LSTM", "Pandas", "Plotly"],
-  "link": "#"
+  "title": "Verity — AI-Powered ESG Evidence Extraction",
+  "description": "Turns electricity bills and fuel receipts into structured ESG data with AI extraction, human review, and JSON/CSV exports.",
+  "tags": ["Next.js", "TypeScript", "React", "Mistral AI", "Document AI", "ESG"],
+  "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
 }

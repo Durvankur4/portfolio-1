@@ -1,6 +1,6 @@
 {
-  "title": "Verity evidence extraction",
-  "description": "An AI-assisted tool that extracts reviewable sustainability data from electricity bills and fuel receipts, with human verification and JSON or CSV export.",
-  "tags": ["TypeScript", "Next.js", "Mistral", "AI Vision"],
-  "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
+  "title": "VeraPatch — Automated Security Findings Management",
+  "description": "Integrates automated security scanning into CI/CD workflows to collect and manage findings.",
+  "tags": ["Semgrep", "GitHub Actions", "REST API", "DevSecOps", "Application Security"],
+  "link": "https://github.com/Durvankur4/Verapatch"
 }
