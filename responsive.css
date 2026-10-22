@@ -1,3 +1,12 @@
+ .hero-photo { aspect-ratio: 3 / 4; background: var(--surface-2); border: 1px solid var(--border); display: grid; place-items: center; color: var(--muted); justify-self: center; max-width: 380px; width: 100%; overflow: hidden; }
+.hero-photo img { filter: grayscale(100%); height: 100%; object-fit: cover; width: 100%; }
+
+.timeline { border-left: 0; display: flex; max-width: none; overflow-x: auto; padding: 8px 0 24px; scroll-snap-type: x proximity; scrollbar-color: var(--accent) var(--surface); }
+.timeline:focus-visible { outline: 1px solid var(--accent); outline-offset: 5px; }
+.timeline-item { border-top: 3px solid var(--accent); flex: 1 0 280px; padding: 28px 28px 0 0; scroll-snap-align: start; }
+.timeline-item::before { border: 3px solid var(--bg); border-radius: 50%; height: 15px; left: 0; top: -9px; width: 15px; }
+.timeline-item:last-child::before { box-shadow: 0 0 0 2px var(--accent); }
+
 @media (max-width: 480px) {
   .navbar-inner,
   .container,
@@ -12,11 +21,8 @@
   .btn-primary,
   .btn-outline { flex: 1 1 132px; text-align: center; }
 
-  .photo-stack-shell { width: calc(100% - 28px); }
-  .photo-stack { height: min(116vw, 400px); }
-  .photo-arrow { height: 42px; top: calc(50% - 21px); width: 42px; }
-  .photo-arrow-previous { left: -14px; }
-  .photo-arrow-next { right: -14px; }
+  .hero-photo { max-width: 300px; }
+  .timeline-item { flex-basis: 85%; }
 
   .marquee-project-card { flex-basis: min(84vw, 330px); }
   .section-header { margin-bottom: 34px; }
@@ -25,5 +31,4 @@
 
 @media (max-width: 340px) {
   .editorial-buttons { flex-direction: column; }
-  .photo-stack-shell { width: calc(100% - 22px); }
 }
