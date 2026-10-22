@@ -7,6 +7,25 @@
 .timeline-item::before { border: 3px solid var(--bg); border-radius: 50%; height: 15px; left: 0; top: -9px; width: 15px; }
 .timeline-item:last-child::before { box-shadow: 0 0 0 2px var(--accent); }
 
+.marquee-project-card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; width: 420px; flex-basis: 420px; }
+.marquee-project-image { align-self: start; }
+.marquee-project-image img { height: auto; object-fit: contain; width: 100%; }
+.marquee-project-content { gap: 16px; }
+.marquee-project-content p,
+.project-tags { margin-top: 0; }
+.project-link { padding-top: 8px; }
+.project-marquee:focus-within .project-track { animation-play-state: paused; }
+
+@media (max-width: 760px) {
+  .marquee-project-card { width: 330px; flex-basis: 330px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-marquee { overflow-x: auto; }
+  .project-track { animation: none; }
+  .marquee-project-card[aria-hidden="true"] { display: none; }
+}
+
 @media (max-width: 480px) {
   .navbar-inner,
   .container,
