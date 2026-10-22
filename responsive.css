@@ -12,7 +12,7 @@
 .marquee-project-image img { height: 100%; object-fit: cover; width: 100%; }
 .marquee-project-content { gap: 16px; padding: 20px 0 0; }
 .project-tags { order: -1; }
-.project-tags span { border-radius: 20px; background: var(--surface-2); padding: 4px 9px; }
+.project-tags span { border-radius: 0px; background: var(--surface-2); padding: 4px 9px; }
 .marquee-project-content p,
 .project-tags { margin-top: 0; }
 .project-link { padding-top: 8px; }
