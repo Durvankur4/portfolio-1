@@ -1,3 +1,4 @@
+
 {
   "title": "VeraPatch — Automated Security Findings Management",
   "description": "Integrates automated security scanning into CI/CD workflows to collect and manage findings.",
