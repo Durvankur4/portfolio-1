@@ -22,7 +22,7 @@ window.PORTFOLIO_CONTENT = {
     {
       "image": "assets/optimized/projects/project-1.png.webp",
       "title": "VeraPatch — Automated Security Findings Management",
-      "description": "A DevSecOps prototype that integrates automated security scanning into CI/CD workflows. Uses GitHub Actions and Semgrep to detect vulnerabilities, ingest scan results through a token-authenticated REST API, and organize findings for review. Separates externally accessible scan ingestion from internal read endpoints to reduce security exposure.",
+      "description": "Integrates automated security scanning into CI/CD workflows to collect and manage findings.",
       "tags": [
         "Semgrep",
         "GitHub Actions",
@@ -35,7 +35,7 @@ window.PORTFOLIO_CONTENT = {
     {
       "image": "assets/optimized/projects/project-2.png.webp",
       "title": "Verity — AI-Powered ESG Evidence Extraction",
-      "description": "Built an AI-powered document extraction MVP that converts electricity bills and fuel receipts into structured ESG evidence. Uses Mistral Vision to classify documents, extract key fields, and surface uncertain values for human review. Supports document previews, field-level verification, and JSON/CSV exports.",
+      "description": "Turns electricity bills and fuel receipts into structured ESG data with AI extraction, human review, and JSON/CSV exports.",
       "tags": [
         "Next.js",
         "TypeScript",
@@ -48,15 +48,16 @@ window.PORTFOLIO_CONTENT = {
     },
     {
       "image": "assets/optimized/projects/project-3.png.webp",
-      "title": "Churn prediction",
-      "description": "End-to-end XGBoost pipeline with feature engineering and model explanations.",
+      "title": "Cost-Sensitive LLM Behaviour Monitoring",
+      "description": "A research prototype that uses Bayesian inference and selective investigation to detect LLM behaviour changes and make cost-aware monitoring decisions.",
       "tags": [
-        "XGBoost",
-        "Flask",
-        "SHAP",
-        "Docker"
+        "LLM Monitoring",
+        "Bayesian Inference",
+        "AI Reliability",
+        "Information Gain",
+        "Cost-Sensitive Decisions"
       ],
-      "link": "#"
+      "link": "https://github.com/Durvankur4/ai-native-engineering/tree/main/Cost-Sensitive%20Behaviour%20Monitoring%20of%20LLM"
     },
     {
       "image": "assets/optimized/projects/project-4.png.webp",

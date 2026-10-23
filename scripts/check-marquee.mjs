@@ -4,8 +4,7 @@ import vm from 'node:vm';
 
 const animation = { currentTime: 0, effect: { getTiming: () => ({ duration: 54000 }) } };
 const element = () => ({
-  children: [], listeners: {}, attributes: {}, offsetWidth: 360,
-  classList: {
+  children: [], listeners: {}, attributes: {}, classList: {
     values: new Set(),
     add(value) { this.values.add(value); },
     remove(value) { this.values.delete(value); },
@@ -18,16 +17,17 @@ const element = () => ({
     this.children.push(child);
   },
   addEventListener(name, callback) { this.listeners[name] = callback; },
-  querySelectorAll: () => [], cloneNode: () => element(),
-  setAttribute(key, value) { this.attributes[key] = value; },
+  querySelectorAll: () => [], cloneNode: () => element(), setAttribute(key, value) { this.attributes[key] = value; },
   focus() { this.focused = true; },
+  getBoundingClientRect: () => ({ width: 360 }),
   scrollBy(options) { this.lastScroll = options.left; },
   getAnimations: () => [animation],
   setPointerCapture() {}, hasPointerCapture: () => true, releasePointerCapture() {}
 });
 const elements = new Map();
 const document = {
-  listeners: {}, createElement: element,
+  listeners: {},
+  createElement: element,
   querySelector(selector) {
     if (!elements.has(selector)) elements.set(selector, element());
     return elements.get(selector);
@@ -42,7 +42,7 @@ vm.runInNewContext(await readFile(new URL('../script.js', import.meta.url), 'utf
 const marquee = elements.get('.project-marquee');
 const send = (name, properties = {}) => {
   let prevented = false;
-  marquee.listeners[name]({ pointerId: 1, isPrimary: true, button: 0, clientX: 100, detail: 1,
+  marquee.listeners[name]({ pointerId: 1, isPrimary: true, button: 0, clientX: 100,
     preventDefault() { prevented = true; }, stopPropagation() {}, ...properties });
   return prevented;
 };
@@ -51,15 +51,6 @@ send('pointerdown');
 send('pointermove', { clientX: 62 });
 assert.equal(animation.currentTime, 5400);
 send('pointermove', { clientX: 138 });
-assert.equal(animation.currentTime, 48600);
-send('pointerup');
-assert.equal(send('click'), true);
-send('pointerdown');
-send('pointerup');
-assert.equal(send('click'), false);
-send('pointerdown');
-send('pointercancel');
-send('pointermove', { clientX: 0 });
 assert.equal(animation.currentTime, 48600);
 const pause = elements.get('#project-pause');
 pause.listeners.click();
@@ -72,10 +63,21 @@ navToggle.listeners.click();
 document.listeners.keydown({ key: 'Escape' });
 assert.equal(navToggle.attributes['aria-expanded'], 'false');
 assert.equal(navToggle.focused, true);
+send('pointerup');
+assert.equal(send('click'), true);
+send('pointerdown');
+send('pointerup');
+assert.equal(send('click'), false);
+send('pointerdown');
+send('pointercancel');
+send('pointermove', { clientX: 0 });
+assert.equal(animation.currentTime, 48600);
 elements.get('#project-track').getAnimations = () => [];
 send('keydown', { key: 'ArrowRight' });
 assert.equal(marquee.lastScroll, 380);
+console.log('Passed: bidirectional drag, wrapping, click protection, cancellation, keyboard/reduced motion, and no wheel interception.');
 const css = await readFile(new URL('../responsive.css', import.meta.url), 'utf8');
 assert.ok(!css.includes('.projects-section:hover'));
+assert.ok(css.includes('.project-marquee:hover .project-track { animation-play-state: running; }'));
 assert.ok(css.includes('.project-marquee:has(.marquee-project-card:hover) .project-track { animation-play-state: paused; }'));
-console.log('Passed: dragging, wrapping, click protection, cancellation, pause, keyboard, reduced motion fallback, menu Escape, and card-only hover rules.');
+console.log('Passed: card-only hover pause overrides the original container hover pause.');

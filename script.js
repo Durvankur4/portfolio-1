@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let previousX;
     let dragged = false;
     marquee.tabIndex = 0;
+    marquee.setAttribute('aria-label', 'Projects: drag left or right, or use the arrow keys');
     marquee.addEventListener('pointerdown', event => {
       if (!event.isPrimary || event.button !== 0) return;
       pointerId = event.pointerId;
@@ -79,19 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const stop = event => {
       if (event.pointerId !== pointerId) return;
-      const releasedId = pointerId;
+      if (marquee.hasPointerCapture(pointerId)) marquee.releasePointerCapture(pointerId);
       pointerId = undefined;
-      if (marquee.hasPointerCapture(releasedId)) marquee.releasePointerCapture(releasedId);
       marquee.classList.remove('is-dragging');
     };
     marquee.addEventListener('pointerup', stop);
     marquee.addEventListener('pointercancel', stop);
     marquee.addEventListener('lostpointercapture', stop);
     marquee.addEventListener('pointerleave', event => { if (!dragged) stop(event); });
-    window.addEventListener('blur', () => { if (pointerId !== undefined) stop({ pointerId }); });
     marquee.addEventListener('dragstart', event => event.preventDefault());
     marquee.addEventListener('click', event => {
-      if (!dragged || event.detail === 0) return;
+      if (!dragged) return;
       event.preventDefault();
       event.stopPropagation();
       dragged = false;
@@ -99,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     marquee.addEventListener('keydown', event => {
       if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
       event.preventDefault();
-      move((event.key === 'ArrowLeft' ? -1 : 1) * (cards[0].offsetWidth + 20));
+      move((event.key === 'ArrowLeft' ? -1 : 1) * (cards[0].getBoundingClientRect().width + 20));
     });
     track.addEventListener('focusin', event => {
       const card = event.target.closest('.marquee-project-card');
