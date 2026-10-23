@@ -1,6 +1,6 @@
 {
-  "title": "Churn prediction",
-  "description": "End-to-end XGBoost pipeline with feature engineering and model explanations.",
-  "tags": ["XGBoost", "Flask", "SHAP", "Docker"],
-  "link": "#"
+  "title": "Cost-Sensitive LLM Behaviour Monitoring",
+  "description": "A research prototype that uses Bayesian inference and selective investigation to detect LLM behaviour changes and make cost-aware monitoring decisions.",
+  "tags": ["LLM Monitoring", "Bayesian Inference", "AI Reliability", "Information Gain", "Cost-Sensitive Decisions"],
+  "link": "https://github.com/Durvankur4/ai-native-engineering/tree/main/Cost-Sensitive%20Behaviour%20Monitoring%20of%20LLM"
 }
