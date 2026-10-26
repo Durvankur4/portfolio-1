@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     marquee.tabIndex = 0;
     marquee.setAttribute('aria-label', 'Projects: drag left or right, or use the arrow keys');
     marquee.addEventListener('pointerdown', event => {
-      if (!event.isPrimary || event.button !== 0) return;
+      if (!event.isPrimary || event.button !== 0 || (event.pointerType === 'touch' && matchMedia('(max-width: 760px)').matches)) return;
       pointerId = event.pointerId;
       previousX = event.clientX;
       dragged = false;
