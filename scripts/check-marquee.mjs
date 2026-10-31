@@ -72,7 +72,20 @@ send('pointerdown');
 send('pointercancel');
 send('pointermove', { clientX: 0 });
 assert.equal(animation.currentTime, 48600);
-elements.get('#project-track').getAnimations = () => [];
+const track = elements.get('#project-track');
+const focusProject = keyboard => track.listeners.focusin({ target: {
+  matches: selector => selector === ':focus-visible' && keyboard,
+  closest: () => track.children[1]
+} });
+send('pointerdown');
+focusProject(false);
+assert.equal(animation.currentTime, 48600, 'Pointer focus must not move a project before its link is clicked');
+send('pointerup');
+assert.equal(send('click'), false, 'A project link click must not be prevented');
+focusProject(true);
+assert.equal(animation.currentTime, 54000, 'Keyboard focus must still bring the focused project into view');
+console.log('Passed: pointer focus keeps project links stationary; keyboard focus reveals the project.');
+track.getAnimations = () => [];
 send('keydown', { key: 'ArrowRight' });
 assert.equal(marquee.lastScroll, 380);
 console.log('Passed: bidirectional drag, wrapping, click protection, cancellation, keyboard/reduced motion, and no wheel interception.');

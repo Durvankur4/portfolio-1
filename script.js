@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       move((event.key === 'ArrowLeft' ? -1 : 1) * (cards[0].getBoundingClientRect().width + 20));
     });
     track.addEventListener('focusin', event => {
+      if (!event.target.matches(':focus-visible')) return;
       const card = event.target.closest('.marquee-project-card');
       const animation = track.getAnimations()[0];
       if (!card || !animation) return;
