@@ -1,6 +1,0 @@
-{
-  "title": "Movie recommender",
-  "description": "A hybrid recommendation system combining collaborative and content-based methods.",
-  "tags": ["Scikit-learn", "FastAPI", "MongoDB"],
-  "link": "#"
-}

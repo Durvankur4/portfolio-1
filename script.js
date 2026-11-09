@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.className = 'marquee-project-card';
       const tags = (project.tags || []).map(tag => `<span>${tag}</span>`).join('');
       const hasProjectLink = project.link && project.link !== '#';
-      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${hasProjectLink ? project.link : project.image}" target="_blank" rel="noreferrer">${hasProjectLink ? 'View project' : 'View project image'} ↗</a></div>`;
+      card.innerHTML = `<div class="marquee-project-image"><img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"></div><div class="marquee-project-content"><h3>${project.title}</h3><p>${project.description || ''}</p><div class="project-tags">${tags}</div><a class="project-link" href="${hasProjectLink ? project.link : project.image}" ${project.download ? 'download aria-label="View project (download PDF)"' : 'target="_blank" rel="noreferrer"'}>View project ↗</a></div>`;
       return card;
     };
     const cards = (content.projects || []).map(createCard);

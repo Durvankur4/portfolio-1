@@ -20,6 +20,19 @@ window.PORTFOLIO_CONTENT = {
   ],
   "projects": [
     {
+      "image": "assets/optimized/projects/llm-architecture-comparison.png.webp",
+      "title": "Block-Level LLM Architecture Comparison",
+      "description": "A research paper comparing Qwen2.5-7B, LLaMA 7B, and Mistral 7B across attention, vocabulary, feed-forward capacity, and context-length efficiency trade-offs.",
+      "tags": [
+        "LLM Architecture",
+        "Transformers",
+        "GQA",
+        "Research"
+      ],
+      "link": "assets/projects/llm-architecture-comparison.pdf",
+      "download": true
+    },
+    {
       "image": "assets/optimized/projects/project-1.png.webp",
       "title": "VeraPatch — Automated Security Findings Management",
       "description": "Integrates automated security scanning into CI/CD workflows to collect and manage findings.",
@@ -30,7 +43,8 @@ window.PORTFOLIO_CONTENT = {
         "DevSecOps",
         "Application Security"
       ],
-      "link": "https://github.com/Durvankur4/Verapatch"
+      "link": "https://github.com/Durvankur4/Verapatch",
+      "download": false
     },
     {
       "image": "assets/optimized/projects/project-2.png.webp",
@@ -44,7 +58,8 @@ window.PORTFOLIO_CONTENT = {
         "Document AI",
         "ESG"
       ],
-      "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting"
+      "link": "https://github.com/Durvankur4/esg-software-for-sustainablility-reporting",
+      "download": false
     },
     {
       "image": "assets/optimized/projects/project-3.png.webp",
@@ -57,30 +72,8 @@ window.PORTFOLIO_CONTENT = {
         "Information Gain",
         "Cost-Sensitive Decisions"
       ],
-      "link": "https://github.com/Durvankur4/ai-native-engineering/tree/main/Cost-Sensitive%20Behaviour%20Monitoring%20of%20LLM"
-    },
-    {
-      "image": "assets/optimized/projects/project-4.png.webp",
-      "title": "Medical image classifier",
-      "description": "A transfer-learning classifier for chest X-rays using ResNet50.",
-      "tags": [
-        "PyTorch",
-        "ResNet",
-        "AWS",
-        "CV"
-      ],
-      "link": "#"
-    },
-    {
-      "image": "assets/optimized/projects/project-5.png.webp",
-      "title": "Movie recommender",
-      "description": "A hybrid recommendation system combining collaborative and content-based methods.",
-      "tags": [
-        "Scikit-learn",
-        "FastAPI",
-        "MongoDB"
-      ],
-      "link": "#"
+      "link": "https://github.com/Durvankur4/ai-native-engineering/tree/main/Cost-Sensitive%20Behaviour%20Monitoring%20of%20LLM",
+      "download": false
     }
   ]
 };

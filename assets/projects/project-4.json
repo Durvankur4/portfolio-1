@@ -1,6 +1,0 @@
-{
-  "title": "Medical image classifier",
-  "description": "A transfer-learning classifier for chest X-rays using ResNet50.",
-  "tags": ["PyTorch", "ResNet", "AWS", "CV"],
-  "link": "#"
-}
