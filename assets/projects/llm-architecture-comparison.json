@@ -1,0 +1,7 @@
+{
+  "title": "Block-Level LLM Architecture Comparison",
+  "description": "A research paper comparing Qwen2.5-7B, LLaMA 7B, and Mistral 7B across attention, vocabulary, feed-forward capacity, and context-length efficiency trade-offs.",
+  "tags": ["LLM Architecture", "Transformers", "GQA", "Research"],
+  "link": "assets/projects/llm-architecture-comparison.pdf",
+  "download": true
+}

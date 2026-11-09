@@ -60,7 +60,8 @@ for (const project of optimizedProjects) {
     title: metadata.title || titleFromFilename(project.name),
     description: metadata.description || '',
     tags: Array.isArray(metadata.tags) ? metadata.tags : [],
-    link: metadata.link || '#'
+    link: metadata.link || '#',
+    download: metadata.download === true
   });
 }
 

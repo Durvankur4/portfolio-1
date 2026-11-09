@@ -36,10 +36,15 @@ const document = {
 };
 vm.runInNewContext(await readFile(new URL('../script.js', import.meta.url), 'utf8'), {
   document,
-  window: { PORTFOLIO_CONTENT: { projects: [{ title: 'Test' }] }, addEventListener() {} },
+  window: { PORTFOLIO_CONTENT: { projects: [{ title: 'Test', link: 'assets/projects/test.pdf', download: true }] }, addEventListener() {} },
   fetch: () => Promise.resolve({ ok: true, json: () => ({ count: 1 }) })
 });
 const marquee = elements.get('.project-marquee');
+const projectHTML = elements.get('#project-track').children[0].innerHTML;
+assert.ok(projectHTML.includes('href="assets/projects/test.pdf" download'));
+assert.ok(projectHTML.includes('>View project'));
+assert.ok(!projectHTML.includes('View project image'));
+assert.ok(!projectHTML.includes('target="_blank"'));
 const send = (name, properties = {}) => {
   let prevented = false;
   marquee.listeners[name]({ pointerId: 1, isPrimary: true, button: 0, clientX: 100,

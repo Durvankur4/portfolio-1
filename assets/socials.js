@@ -6,5 +6,7 @@ window.PORTFOLIO_SOCIALS = [
   { label: 'Email me', url: 'mailto:durvankurchavan9@gmail.com' },
   { label: 'GitHub', url: 'https://github.com/Durvankur4' },
   { label: 'LinkedIn', url: 'https://linkedin.com/in/durvankurc' },
-  { label: 'X', url: 'https://x.com/durvankurx' }
+  { label: 'X', url: 'https://x.com/durvankurx' },
+  { label: 'YouTube', url: 'https://youtube.com/@durvankur?si=YYON2vWje84AaFPY' },
+  { label: 'Substack', url: 'https://substack.com/@durvv' }
 ];
