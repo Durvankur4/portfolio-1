@@ -32,7 +32,7 @@
         .catch(() => { loading = null; });
     } catch {}
   };
-  const play = name => {
+  const play = (name, volume = .55) => {
     if (!enabled || document.hidden) return;
     prepare();
     // Never queue stale interaction sounds while the kit loads or audio unlocks.
@@ -42,13 +42,22 @@
     const source = context.createBufferSource();
     const gain = context.createGain();
     source.buffer = buffer;
-    gain.gain.value = .55;
+    gain.gain.value = volume;
     source.connect(gain).connect(context.destination);
     source.onended = () => { source.disconnect(); gain.disconnect(); };
     source.start(0, offset + (name === 'tap' ? 2 * Math.floor(Math.random() * 5) : 0), duration);
   };
   document.addEventListener('pointerdown', prepare, { passive: true });
   document.addEventListener('keydown', prepare);
+  let lastHover = -Infinity;
+  document.addEventListener('pointerover', event => {
+    if (event.pointerType !== 'mouse' || event.buttons || !buffer || context?.state !== 'running') return;
+    const card = event.target.closest('.marquee-project-card');
+    if (!card || (event.relatedTarget && card.contains(event.relatedTarget))) return;
+    if (performance.now() - lastHover < 180) return;
+    lastHover = performance.now();
+    play('tap', .12);
+  });
   document.addEventListener('click', event => {
     const control = event.target.closest('a, button');
     if (!control || event.defaultPrevented || control.disabled) return;

@@ -4,6 +4,7 @@ import { runInNewContext } from 'node:vm';
 
 const listeners = {};
 const played = [];
+const gains = [];
 const stored = new Map();
 const toggle = { setAttribute() {}, hidden: true };
 let now = 0;
@@ -13,7 +14,7 @@ class AudioContext {
   suspend() { this.state = 'suspended'; return Promise.resolve(); }
   decodeAudioData() { return Promise.resolve({}); }
   createBufferSource() { return { connect: node => node, start: (...args) => played.push(args) }; }
-  createGain() { return { gain: {}, connect() {} }; }
+  createGain() { const node = { gain: {}, connect() {} }; gains.push(node.gain); return node; }
 }
 const document = {
   hidden: false,
@@ -45,4 +46,26 @@ document.hidden = true;
 click(link);
 assert.equal(played.length, 2);
 assert.equal(toggle.hidden, false);
+document.hidden = false;
+const child = {};
+const card = { contains: node => node === child };
+const hover = (overrides = {}) => listeners.pointerover({
+  pointerType: 'mouse', buttons: 0, target: { closest: () => card }, relatedTarget: null, ...overrides,
+});
+now += 200;
+hover();
+assert.equal(played.length, 3);
+assert.equal(gains.at(-1).value, .12);
+hover();
+assert.equal(played.length, 3, 'Rapid card entries are throttled');
+now += 200;
+hover({ relatedTarget: child });
+hover({ pointerType: 'touch' });
+hover({ buttons: 1 });
+assert.equal(played.length, 3, 'Child movement, touch, and dragging stay silent');
+click(toggle);
+now += 200;
+hover();
+assert.equal(played.length, 3, 'Muted hover stays silent');
 console.log('Sound playback, mute, persistence, toggle, and hidden-tab checks passed.');
+console.log('Quiet card hover, throttling, child movement, touch, drag, and mute checks passed.');
