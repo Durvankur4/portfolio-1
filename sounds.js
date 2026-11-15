@@ -20,8 +20,12 @@
   const prepare = () => {
     if (!enabled) return;
     try {
-      context ||= new AudioContext();
+      if (!context) {
+        context = new AudioContext();
+        context.onstatechange = draw;
+      }
       if (context.state === 'suspended') context.resume().catch(() => {});
+      draw();
       loading ||= fetch(url)
         .then(response => {
           if (!response.ok) throw new Error('Sound kit unavailable');
@@ -36,8 +40,23 @@
     if (!enabled || document.hidden) return;
     prepare();
     // Never queue stale interaction sounds while the kit loads or audio unlocks.
-    if (!buffer || context.state !== 'running' || performance.now() - lastPlayed < 45) return;
+    if (context?.state !== 'running' || (name !== 'hover' && !buffer) || performance.now() - lastPlayed < 45) return;
     lastPlayed = performance.now();
+    if (name === 'hover') {
+      const tone = context.createOscillator();
+      const gain = context.createGain();
+      const now = context.currentTime;
+      tone.frequency.setValueAtTime(900, now);
+      tone.frequency.exponentialRampToValueAtTime(600, now + .08);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(.045, now + .005);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + .08);
+      tone.connect(gain).connect(context.destination);
+      tone.onended = () => { tone.disconnect(); gain.disconnect(); };
+      tone.start(now);
+      tone.stop(now + .09);
+      return;
+    }
     const [offset, duration] = clips[name];
     const source = context.createBufferSource();
     const gain = context.createGain();
@@ -47,16 +66,22 @@
     source.onended = () => { source.disconnect(); gain.disconnect(); };
     source.start(0, offset + (name === 'tap' ? 2 * Math.floor(Math.random() * 5) : 0), duration);
   };
-  document.addEventListener('pointerdown', prepare, { passive: true });
-  document.addEventListener('keydown', prepare);
+  const unlock = event => {
+    if (event.target.closest?.('#sound-toggle')) return;
+    prepare();
+  };
+  document.addEventListener('pointerdown', unlock, { passive: true });
+  document.addEventListener('pointerup', unlock, { passive: true });
+  document.addEventListener('keydown', unlock);
+  document.addEventListener('click', unlock);
   let lastHover = -Infinity;
   document.addEventListener('pointerover', event => {
-    if (event.pointerType !== 'mouse' || event.buttons || !buffer || context?.state !== 'running') return;
+    if (event.pointerType !== 'mouse' || event.buttons || context?.state !== 'running') return;
     const card = event.target.closest('.marquee-project-card');
     if (!card || (event.relatedTarget && card.contains(event.relatedTarget))) return;
     if (performance.now() - lastHover < 180) return;
     lastHover = performance.now();
-    play('tap', .12);
+    play('hover');
   });
   document.addEventListener('click', event => {
     const control = event.target.closest('a, button');
