@@ -42,4 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = encodeURIComponent([organization && `Organization: ${organization}`, message].filter(Boolean).join('\n\n'));
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   });
+
+  fetch('/.netlify/functions/visit-counter', { method: 'POST' })
+    .then(response => response.ok ? response.json() : Promise.reject())
+    .then(({ count }) => {
+      document.querySelectorAll('[data-visitor-count]').forEach(counter => {
+        counter.textContent = Number(count).toLocaleString();
+      });
+    })
+    .catch(() => {
+      document.querySelectorAll('[data-visitor-count]').forEach(counter => {
+        counter.textContent = 'Live on Netlify';
+      });
+    });
 });

@@ -81,6 +81,20 @@ h1 {
   padding: 1.5rem;
 }
 .contact-form form { display: flex; flex-direction: column; gap: .75rem; }
+.visitor-count {
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  justify-content: space-between;
+  letter-spacing: .08em;
+  padding: .875rem 0;
+  text-transform: uppercase;
+}
+.visitor-count strong { color: var(--foreground); font-size: .875rem; letter-spacing: normal; }
+.visitor-count-bottom { display: none; }
 input, textarea {
   background: transparent;
   border: 1px solid var(--line);
@@ -178,6 +192,8 @@ footer {
 @media (max-width: 900px) {
   .site-shell { gap: 3.5rem; grid-template-columns: 1fr; padding: 4rem 1.5rem; }
   .profile-panel { position: static; }
+  .visitor-count-profile { display: none; }
+  .visitor-count-bottom { display: flex; }
 }
 @media (max-width: 620px) {
   .site-shell { gap: 3rem; padding: 3rem 1.5rem; }
