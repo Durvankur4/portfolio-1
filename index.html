@@ -4,92 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Durvankur — AI Engineer & Data Scientist</title>
-  <meta name="description" content="Durvankur's personal portfolio of AI-native applications, machine learning projects, and data science experiments. Explore my work, experience, and interests in AI engineering.">
-  <meta name="theme-color" content="#10100f">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Durvankur's portfolio of AI engineering, machine learning, and data science work.">
+  <meta name="theme-color" content="#111110">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <div id="scroll-progress" aria-hidden="true"></div>
-  <header class="navbar" id="navbar">
-    <div class="navbar-inner">
-      <a href="#hero" class="nav-logo">DURVANKUR<span>.</span></a>
-      <nav class="nav-links" id="nav-links" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact" class="nav-cta">Let's talk</a>
-      </nav>
-      <button type="button" class="sound-toggle" id="sound-toggle" aria-label="Sound effects" aria-pressed="true" hidden>Sound on</button>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
-    </div>
-  </header>
-  <main id="main-content" tabindex="-1">
-    <section class="hero" id="hero" aria-label="Introduction">
-      <div class="editorial-container">
-        <div class="editorial-content-left">
-          <p class="eyebrow">AI engineering · Machine learning · Data science</p>
-          <h1 class="editorial-title-main">AI Native Engineer</h1>
-          <h2 class="editorial-title-sub">&amp; Data Scientist</h2>
-          <p class="editorial-desc">I'm Durvankur. I explore data, train machine learning models, and build AI-native applications. This is where I share what I'm building and learning, from early experiments to end-to-end projects.</p>
-          <div class="editorial-buttons">
-            <a href="#projects" class="btn-primary">Explore work</a>
-            <a href="assets/Durvankur_Resume.pdf" download="Durvankur_Resume.pdf" class="btn-outline">Resume</a>
-            <a href="https://cal.boardy.ai/380de5802b03" class="btn-outline" target="_blank" rel="noopener noreferrer">Schedule a meeting</a>
-          </div>
+  <div class="site-shell">
+    <aside class="profile-panel">
+      <header>
+        <h1>Durvankur<br>Chavan</h1>
+        <p class="role">AI Native Engineer</p>
+        <p class="location">INDIA, Pune · B.S. Computer Science · May 2027</p>
+      </header>
+
+      <div class="profile-links" id="profile-links" aria-label="Profile links"></div>
+
+      <section aria-labelledby="competencies-title">
+        <p class="eyebrow" id="competencies-title">Core competencies</p>
+        <div class="competencies">
+          <span>Python</span>
+          <span>TypeScript</span>
+          <span>Machine learning</span>
+          <span>LLMs</span>
+          <span>React</span>
+          <span>Next.js</span>
+          <span>Data science</span>
+          <span>DevSecOps</span>
         </div>
-        <div class="hero-photo" id="hero-photo"></div>
-      </div>
-    </section>
-    <section class="projects-section" id="projects" aria-label="Featured projects">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">Featured work</p>
-          <h2 class="section-title">Projects I've built</h2>
-          <p class="section-subtitle">Hands-on work in machine learning, data analysis, and AI application development. Each project is an opportunity to test an idea and deepen my engineering skills.</p>
+      </section>
+
+      <section class="contact-form" aria-labelledby="contact-title">
+        <p class="eyebrow" id="contact-title">Want to reach me?</p>
+        <form id="message-form">
+          <label class="sr-only" for="sender-name">Name</label>
+          <input id="sender-name" name="name" placeholder="Name" autocomplete="name">
+          <label class="sr-only" for="sender-organization">Organization</label>
+          <input id="sender-organization" name="organization" placeholder="Organization" autocomplete="organization">
+          <label class="sr-only" for="sender-message">Message</label>
+          <textarea id="sender-message" name="message" placeholder="What's this about?" rows="3"></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </aside>
+
+    <main>
+      <section class="content-section" aria-labelledby="experience-title">
+        <h2 id="experience-title">Experience &amp; education</h2>
+        <div class="experience-list">
+          <article>
+            <div class="experience-heading">
+              <h3>AI engineering &amp; data science</h3>
+              <time>2023 – Present</time>
+            </div>
+            <p class="experience-place">Independent work <span>· Machine learning &amp; AI systems</span></p>
+            <p>I explore data, train machine learning models, and build AI-native applications. My work ranges from early research experiments to practical end-to-end systems.</p>
+          </article>
+          <article>
+            <div class="experience-heading">
+              <h3>Data science student</h3>
+              <time>2023 – Present</time>
+            </div>
+            <p class="experience-place">University <span>· Data science</span></p>
+            <p>Focused on the foundations behind useful data products, including statistics, machine learning, data structures, linear algebra, and probability.</p>
+          </article>
+          <article>
+            <div class="experience-heading">
+              <h3>Applied machine learning</h3>
+              <time>Ongoing</time>
+            </div>
+            <p class="experience-place">Research &amp; projects <span>· AI reliability</span></p>
+            <p>I test ideas through hands-on projects, with an emphasis on making AI systems understandable, measurable, and useful in real workflows.</p>
+          </article>
         </div>
-      </div>
-      <div class="project-controls container">
-        <p id="project-help">Swipe or drag to explore. Use left/right arrow keys when focused.</p>
-        <button type="button" id="project-pause" aria-pressed="false" aria-controls="project-track">Pause motion</button>
-      </div>
-      <div class="project-marquee" role="region" aria-label="Featured projects" aria-describedby="project-help">
-        <div class="project-track" id="project-track"></div>
-      </div>
-    </section>
-    <section class="section" id="experience" aria-label="Experience and education">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">Learning &amp; experience</p>
-          <h2 class="section-title">Experience &amp; education</h2>
-        </div>
-        <div class="timeline" tabindex="0" role="region" aria-label="Career timeline, scroll horizontally to explore">
-          <article class="timeline-item"><p class="timeline-date">2023 — Present</p><h3>B.Tech / B.Sc in data science</h3><h4>University Name</h4><p>Focused coursework in machine learning, statistics, data structures, linear algebra, and probability.</p></article>
-          <article class="timeline-item"><p class="timeline-date">2024</p><h3>Kaggle competitions</h3><h4>Kaggle Expert</h4><p>Participated in prediction challenges and built practical modelling experience through iterative experiments.</p></article>
-          <article class="timeline-item"><p class="timeline-date">2025 — Present</p><h3>Data science intern</h3><h4>Company Name · Remote</h4><p>Building predictive models and data pipelines, from customer segmentation to production deployment.</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="contact-section" id="contact" aria-label="Contact">
-      <div class="container">
-        <div class="visitor-count" aria-live="polite"><span class="visitor-count-label">Portfolio visits</span><strong id="visitor-count">—</strong></div>
-        <div class="section-header">
-          <p class="section-label">Get in touch</p>
-          <h2 class="section-title">Let's connect</h2>
-          <p class="section-subtitle">Interested in working together? I'm open to internships, engineering and data science roles, research opportunities, and collaborations with people building thoughtful AI applications. ps : I'm still a workin progress</p>
-        </div>
-        <div class="contact-links" id="contact-links"></div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer"><div class="footer-inner"><div class="footer-logo">DURVANKUR<span>.</span></div><span>© 2026 Durvankur. All rights reserved.</span></div></footer>
+      </section>
+
+      <section class="content-section" aria-labelledby="projects-title">
+        <h2 id="projects-title">Projects</h2>
+        <div class="project-grid" id="project-grid"></div>
+      </section>
+
+      <footer>
+        <span>© 2026 Durvankur Chavan</span>
+        <a href="mailto:durvankurchavan9@gmail.com">durvankurchavan9@gmail.com</a>
+      </footer>
+    </main>
+  </div>
+
   <script src="assets/content.js"></script>
   <script src="assets/socials.js"></script>
   <script src="script.js"></script>
-  <script src="sounds.js"></script>
 </body>
 </html>
